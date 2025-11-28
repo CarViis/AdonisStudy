@@ -8,7 +8,6 @@ export const createLivroValidator = vine.compile(
     titulo: vine.string().trim().minLength(6),
     autor: vine.string().trim().minLength(6),
     genero: vine.string().trim().minLength(6),
-    dataPublicacao: vine.date(),
   })
 )
 
@@ -20,6 +19,5 @@ export const updateLivroValidator = vine.compile(
     titulo: vine.string().trim().minLength(6),
     autor: vine.string().trim().minLength(6),
     genero: vine.string().trim().minLength(6),
-    dataPublicacao: vine.date(),
   })
 )

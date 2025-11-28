@@ -1,16 +1,14 @@
 import { createLivroValidator } from '#validators/livro'
 import type { HttpContext } from '@adonisjs/core/http'
+import Livro from '#models/livro';
 
 export default class LivrosController {
   /**
    * Display a list of resource
    */
   async index({}: HttpContext) {
-    return [
-      { id: 1, titulo: 'O Senhor dos Anéis', autor: 'J.R.R. Tolkien' },
-      { id: 2, titulo: '1984', autor: 'George Orwell' },
-      { id: 3, titulo: 'Dom Casmurro', autor: 'Machado de Assis' },
-    ]
+    const livros = await Livro.all();
+    return livros;
   }
 
   async create({params}: HttpContext) {}
@@ -21,7 +19,8 @@ export default class LivrosController {
 
   async store({ request }: HttpContext) {
     const payload = await request.validateUsing(createLivroValidator)
-    return payload
+    const livro = await Livro.create(payload)
+    return livro;
   }
 
   async show({ params }: HttpContext) {}
